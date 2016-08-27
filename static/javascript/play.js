@@ -114,7 +114,7 @@ function findData(text){
               // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
               // TODO
               data_s = data.replace (/\\x/g, "\%");
-              data_s = unescape(data_s);
+              data_s = decode_utf8(unescape(data_s));
               data = jQuery.parseJSON(data_s);
 
               //print list
@@ -257,4 +257,8 @@ function musicAddList(name,id){
 
 function musicDelete (name, id) {
   $('.music_list').remove;
+}
+
+function decode_utf8(s) {
+  return decodeURIComponent(escape(s));
 }
